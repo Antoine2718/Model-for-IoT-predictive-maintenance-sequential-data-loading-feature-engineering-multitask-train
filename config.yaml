@@ -1,0 +1,46 @@
+seed: 42
+
+data:
+  root: "./data"
+  window_size: 256
+  step_size: 64
+  num_sensors: 12
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  synthetic:
+    num_assets: 200
+    max_cycles: 3000
+
+model:
+  encoder:
+    type: "transformer"  # "lstm" ou "transformer"
+    d_model: 128
+    n_heads: 4
+    n_layers: 3
+    dropout: 0.1
+  twin_core:
+    init_health: 1.0
+    degradation_rate: 1e-4
+    env_factor_weight: 0.3
+  fusion:
+    hidden_dim: 128
+  tasks:
+    regression_rul: true
+    classification_failure: true
+
+training:
+  batch_size: 64
+  epochs: 50
+  lr: 1e-3
+  weight_decay: 1e-4
+  optimizer: "adam"
+  scheduler: "cosine"
+  patience: 8
+  grad_clip_norm: 1.0
+  device: "cuda"  # "cuda" ou "cpu"
+
+logging:
+  save_dir: "./runs"
+  checkpoint_dir: "./runs/checkpoints"
+  plots_dir: "./runs/plots"
