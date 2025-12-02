@@ -28,7 +28,7 @@ python -m src.train
 ```bash
 python -m src.evaluate
 ```
-## Interference
+## Example
 ```python
 from src.inference import TwinPredictor
 import numpy as np
